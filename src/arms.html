@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv='expires' content='0'>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Tests</title>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script>
+            var t = 1
+            var graphs_on = true
+            var sims_on = true
+            $(document).ready(function(){
+                console.log("start")
+                setInterval(function() {
+                    console.log(t);
+                    t += 1
+                    cache_clear()
+                }, 5000);
+                
+                $("#graphs").on( 'click', function () {
+                    if(graphs_on == true) {
+                        $("#graphs1").hide();             
+                        $("#graphs").css({'background-color': '#aaffaa'});             
+                        graphs_on = false;
+                    } else {
+                        $("#graphs1").show();             
+                        $("#graphs").css({'background-color': '#44aa44'});             
+                        graphs_on = true;
+                    }
+                });
+                $("#sims").on( 'click', function () {
+                    if(sims_on == true) {
+                        $("#graphs2").hide();             
+                        $("#graphs3").hide();             
+                        $("#graphs4").hide();             
+                        $("#sims").css({'background-color': '#aaffaa'});             
+                        sims_on = false;
+                    } else {
+                        $("#graphs2").show();             
+                        $("#graphs3").show();             
+                        $("#graphs4").show();             
+                        $("#sims").css({'background-color': '#44aa44'});             
+                        sims_on = true;
+                    }
+                });
+
+            }); 
+
+            
+            function refresh(img) {
+                if ($(img).length>0) {
+                    src = $(img).attr('src');
+                    $(img).attr('src',src.replace(/(\?.*)*$/, '?dt=' + new Date().getTime()));
+                }
+            }
+
+            function cache_clear() {
+                console.log("clear")
+                for(i=1; i<=20; i++){
+                    refresh("#img"+i);
+                }
+            }
+
+
+        </script>
+        <style>
+
+            .band {
+                width: 100%;
+                background-color: #FFD;
+            }
+            .tag {
+                width: 7em !important;
+                background-color: #EE9;
+            }
+            
+            /* DivTable.com */
+            .divTable{
+                display: table;
+                width: 100%;
+            }
+            .divTableRow {
+                display: table-row;
+            }
+            .divTableHalfRow {
+                display: table-row;
+                height: 50%;
+            }
+            .divTableHeading {
+                background-color: #EEE;
+                display: table-header-group;
+            }
+            .divTableMenuCell {
+                border: 4px solid #ffffff;
+                display: table-cell;
+                text-align: center;
+                padding: 10px 10px;
+                font-size: 1.5em;
+                font-weight: bold;
+                color: #ffffff;
+                background-color: #44aa44;
+                width: 5%;
+            }
+            .divTableEmptyCell {
+                border: 0px solid #999999;
+                display: table-cell;
+                text-align: center;
+                padding: 10px 10px;
+                width: 5%;
+            }
+            .divTableCell, .divTableHead {
+                border: 1px solid #999999;
+                display: table-cell;
+                text-align: center;
+                padding: 3px 10px;
+                width: 25%;
+            }
+            .divTableDoubleCell {
+                border: 1px solid #999999;
+                display: table-cell;
+                text-align: center;
+                padding: 3px 10px;
+                width: 50%;
+            }
+            .divTableWholeCell {
+                border: 1px solid #999999;
+                display: table-cell;
+                text-align: center;
+                padding: 3px 10px;
+                width: 100%;
+            }
+            .divTableHidden {
+                display: none !important;
+            }
+            .divTableHeading {
+                background-color: #EEE;
+                display: table-header-group;
+                font-weight: bold;
+            }
+            .divTableFoot {
+                background-color: #EEE;
+                display: table-footer-group;
+                font-weight: bold;
+            }
+            .divTableBody {
+                display: table-row-group;
+            }
+            .divTableCellImg {
+                width: 100%;
+            }
+
+            .divTableCellImgFake {
+                width: 100% !important;    
+            }
+            img {
+                width: 100% !important;    
+            }
+        </style>
+    </head>
+    <body>
+        <div class="divTable">
+            <div id="menu" class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableMenuCell" id="graphs">Graphs</div>
+                    <div class="divTableMenuCell" id="sims">Simulations</div>
+                    <div class="divTableEmptyCell"></div>
+                    <div class="divTableEmptyCell"></div>
+                    <div class="divTableEmptyCell"></div>
+                    <div class="divTableEmptyCell"></div>
+                </div>
+            </div>
+        </div>
+        <div class="divTable">
+            <div id="graphs1" class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell"><img id="img13" class="divTableCellImg" src="visual_map.png"></div>
+                    <div class="divTableCell"><img id="img14" class="divTableCellImg" src="comp_map.png"></div>
+                    <div class="divTableCell">
+                        <div style="display: inline-block">
+                            <div>
+                                <img id="img15" class="divTableCellImg" src="tv.gif">
+                            </div>
+                            <div>
+                                <img id="img16" class="divTableCellImg" src="log.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divTable">
+            <div id="graphs2" class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell"><img id="img1" class="divTableCellImg" src="episode0.gif"></div>
+                    <div class="divTableCell"><img id="img2" class="divTableCellImg" src="episode1.gif"></div>
+                    <div class="divTableCell"><img id="img3" class="divTableCellImg" src="episode2.gif"></div>
+                    <div class="divTableCell"><img id="img4" class="divTableCellImg" src="episode3.gif"></div>
+
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><img id="img5" class="divTableCellImg" src="episode4.gif"></div>
+                    <div class="divTableCell"><img id="img6" class="divTableCellImg" src="episode5.gif"></div>
+                    <div class="divTableCell"><img id="img7" class="divTableCellImg" src="episode6.gif"></div>
+                    <div class="divTableCell"><img id="img8" class="divTableCellImg" src="episode7.gif"></div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><img id="img9" class="divTableCellImg" src="episode8.gif"></div>
+                    <div class="divTableCell"><img id="img10" class="divTableCellImg" src="episode9.gif"></div>
+                    <div class="divTableCell"><img id="img11" class="divTableCellImg" src="episode10.gif"></div>
+                    <div class="divTableCell"><img id="img12" class="divTableCellImg" src="episode11.gif"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
